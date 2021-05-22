@@ -28,12 +28,13 @@ RSA * createRSA(unsigned char * key, int ispublic)
 		return 0;
 	}
 	
-	rsa = PEM_read_bio_RSAPrivateKey(keybio, &rsa, NULL, NULL);
+	rsa = PEM_read_bio_RSAPrivateKey(keybio, NULL, NULL, NULL);
 	if (rsa == NULL)
 	{
 		printf("Failed to create RSA");
 	}
 
+	BIO_free(keybio);
 	return rsa;
 }
 
